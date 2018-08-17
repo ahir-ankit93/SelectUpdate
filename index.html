@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div ng-controller="myAppCtrl">
+
+        <div class="container">
+            <br>
+            <!-- <div class="form-inline">
+                <input class="form-control glyphicon glyphicon-search" id="myInput" type="text" placeholder="Search.." >
+                <span class="glyphicon glyphicon-search"></span>
+            </div> -->
+          
+            <div class="input-group">
+                <input type="text" class="form-control" id="myInput" placeholder="Search Blog..">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+            </div>
+
+            <table class="table table-bordered table-responsive table-hover">
+            <caption class="text-center"><h1>Users Detail</h1></caption>
+            <tr>
+                <th>Name</th>
+                <th>Id</th>
+                <th>Node_Id</th>
+                <th>Avatar_Url</th>
+                <th>Gravatar_Id</th>
+                <th>Url</th>
+                <th>Html_Url</th>
+                <th>Followers_Url</th>
+                <th>Following_Url</th>
+                <th>Gists_Url</th>
+                <th>Starred_Url</th>
+                <th>Subscriptions_Url</th>
+                <th>Organizations_Url</th>
+                <th>Repos_Url</th>
+                <th>Events_Url</th>
+                <th>Received_Events_Url</th>
+                <th>Type</th>
+                <th>Site_Admin</th>
+            </tr>
+            <tbody id="myTable">
+            <tr ng-repeat="user in users">
+                <td>{{user.login}}</td>
+                <td>{{user.id}}</td>
+                <td>{{user.node_id}}</td>
+                <td><img class="img-responsive img-thumbnail" src="{{user.avatar_url}}"></td>
+                <td>{{user.gravatar_id}}</td>
+                <td><a href="{{user.url}}" target="_blank">{{user.url}}</a></td>
+                <td><a href="{{user.html_url}}" target="_blank">{{user.html_url}}</a></td>
+                <td><a href="{{user.followers_url}}" target="_blank">{{user.followers_url}}</a></td>
+                <td><a href="{{user.following_url}}" target="_blank">{{user.following_url}}</a></td>
+                <td><a href="{{user.gists_url}}" target="_blank">{{user.gists_url}}</a></td>
+                <td><a href="{{user.starred_url}}" target="_blank">{{user.starred_url}}</a></td>
+                <td><a href="{{user.subscriptions_url}}" target="_blank">{{user.subscriptions_url}}</a></td>
+                <td><a href="{{user.organizations_url}}" target="_blank">{{user.organizations_url}}</a></td>
+                <td><a href="{{user.repos_url}}" target="_blank">{{user.repos_url}}</a></td>
+                <td><a href="{{user.events_url}}" target="_blank">{{user.events_url}}</a></td>
+                <td><a href="{{user.received_events_url}}" target="_blank">{{user.received_events_url}}</a></td>
+                <td>{{user.type}}</td>
+                <td>{{user.site_admin}}</td>
+
+            </tr>
+            </tbody>
+            </table>
+
+        </div>
+
+    
+    </div>
+    <script src="angular.min.js"></script>
+    <script src="angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.2/jquery.js"></script>
+    <script src="app.js"></script>
+
+    <script>
+        $(document).ready(function(){
+          $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
+    </script>
+
+</body>
+</html>

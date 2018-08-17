@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myCurd">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CurdOperation</title>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div ng-controller="myCurdCtrl">
+            <div class="container">
+                <br>
+                <form >
+                        <div>
+                                <div class="col-md-12">
+                                        <label for="uname">ID</label>
+                                        <input type="text" id="id" ng-model="user.id" class="form-control" placeholder="Enter ID"/>
+                                    </div>
+                                <div class="col-md-12">
+                                    <label for="uname">UserName</label>
+                                    <input type="text" id="uname" ng-model="user.newUsername" class="form-control" placeholder="Enter Username"/>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="mobile">Mobile</label>
+                                    <input type="tel" id="mobile" ng-model="user.newMobile" class="form-control" placeholder="Enter Mobile number"/>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="dob">DOB</label>
+                                    <input type="date" id="dob"  ng-model="user.newDob" class="form-control" placeholder="Enter Date of Birth"/>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="emailid">Email</label>
+                                    <input type="email" id="emailid" ng-model="user.newEmailid" class="form-control" placeholder="Enter Email id"/>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" ng-model="user.newPassword" class="form-control" placeholder="Enter Password"/>
+                                </div>
+                                
+                                <br><br><br>
+                                <div class="col-md-12"><br>
+                                        <input type="button" class="btn btn-success" ng-click="addUsers(user)" value="submit"/>
+                                        <input type="button" ng-click="editUsers(user)" class="btn btn-success" value="edit"/>
+                                </div>
+                             
+                                   
+                            </div>
+                       
+                </form>  
+                   
+               
+            <br>
+            <br>
+            <div class="input-group">
+                    <input type="text" class="form-control" id="myInput" placeholder="Search Blog..">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+            </div>
+                <br>
+        
+
+            <table class="table table-bordered table-responsive table-hover">
+                    <caption class="text-center"><h1>Users Detail</h1></caption>
+                    <tr>
+                        <th>id</th>
+                        <th>UserName</th>
+                        <th>Mobile</th>
+                        <th>DOB</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Remove</th>
+                        <th>Update</th>
+                    </tr>
+                    <tbody id="myTable">
+                    <tr ng-repeat="user in users">
+                        <td> {{user.id}} </td>
+                        <td>{{user.newUsername}}</td>
+                        <td>{{user.newMobile}}</td>
+                        <td> {{user.newDob | date}}</td>
+                        <td>{{user.newEmailid}}</td>
+                        <td>{{user.newPassword}}</td> 
+                        <td ng-click="removeUser(user)"><b>Delete</b></td> 
+                        <td ng-click="selectEdit($index)"><b>Edit</b></td>                             
+                    </tr>
+                    </tbody>
+            </table>
+
+    
+        </div>
+
+    </div>
+    
+    <script src="angular.min.js"></script>
+    <script src="curd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.2/jquery.js"></script>
+    
+    <script>
+            $(document).ready(function(){
+              $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+              });
+            });
+    </script>
+</body>
+</html>
